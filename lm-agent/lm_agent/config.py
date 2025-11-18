@@ -1,9 +1,9 @@
-import sys
 import logging
+import sys
 from pathlib import Path
-from typing import Optional, Annotated
+from typing import Annotated, Optional
 
-from pydantic import AnyHttpUrl, Field, confloat
+from pydantic import AnyHttpUrl, confloat
 from pydantic_core import ValidationError
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -45,7 +45,7 @@ class Settings(BaseSettings):
     LOG_LEVEL: LogLevelEnum = LogLevelEnum.INFO
 
     # Base URL of the License Manager API
-    BACKEND_BASE_URL: AnyHttpUrl = Field("http://127.0.0.1:8000")
+    BACKEND_BASE_URL: AnyHttpUrl = AnyHttpUrl(url="http://127.0.0.1:8000")
 
     # Location of the log directory
     LOG_BASE_DIR: Optional[Path] = DEFAULT_LOG_DIR
